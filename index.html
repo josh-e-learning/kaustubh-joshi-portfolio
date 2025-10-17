@@ -1,374 +1,180 @@
-import React from 'react';
-import { Mail, Phone, Linkedin, ExternalLink, Award, Briefcase, Code, Users } from 'lucide-react';
-import { personalInfo, about, experience, projects, skills, certifications, education } from '../mock';
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { Separator } from './ui/separator';
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="A product of emergent.sh" />
+        <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+        <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-// Hero Section
-export const Hero = () => {
-  return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Subtle Geometric Pattern Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }} />
-      </div>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+        <title>Emergent | Fullstack App</title>
+        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
+        <!--
+        These two scripts have been added for the testing, please do not edit or remove them
+        -->
+        <script src="https://unpkg.com/rrweb@latest/dist/rrweb.min.js"></script>
+        <script src="https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js"></script>
+        <!--
+        These two scripts have been added for the Visual Edits, please do not edit or remove them
+        -->
+        <script>
+            // Only load visual edit scripts when inside an iframe and visual edits are enabled
+            if (window.self !== window.top && '%REACT_APP_ENABLE_VISUAL_EDITS%' === 'true') {
+                // Load debug monitor script
+                var debugScript = document.createElement('script');
+                debugScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
+                document.head.appendChild(debugScript);
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left: Text Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-6xl lg:text-7xl font-light tracking-tight leading-tight">
-                {personalInfo.name}
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 font-light leading-relaxed">
-                {personalInfo.title}
-              </p>
-            </div>
-            <p className="text-lg text-gray-500 max-w-xl">
-              {personalInfo.tagline}
-            </p>
-            <div className="flex gap-4 pt-4">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors"
-              >
-                <Mail size={18} />
-                Get in Touch
-              </a>
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-black hover:bg-gray-50 transition-colors"
-              >
-                <Linkedin size={18} />
-                LinkedIn
-              </a>
-            </div>
-          </div>
+                // Configure Tailwind
+                window.tailwind = window.tailwind || {};
+                tailwind.config = {
+                    corePlugins: { preflight: false },
+                };
 
-          {/* Right: Professional Image */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 overflow-hidden rounded-sm">
+                // Load Tailwind CDN
+                var tailwindScript = document.createElement('script');
+                tailwindScript.src = 'https://cdn.tailwindcss.com';
+                document.head.appendChild(tailwindScript);
+            }
+        </script>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+        <a
+            id="emergent-badge"
+            target="_blank"
+            href="https://app.emergent.sh/?utm_source=emergent-badge"
+            style="
+                display: flex !important;
+                align-items: center !important;
+                position: fixed !important;
+                bottom: 20px;
+                right: 20px;
+                text-decoration: none;
+                padding: 6px 10px;
+                font-family: -apple-system, BlinkMacSystemFont,
+                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
+                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
+                    sans-serif !important;
+                font-size: 12px !important;
+                z-index: 9999 !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+                border-radius: 8px !important;
+                background-color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.25) !important;
+            "
+        >
+            <div
+                style="display: flex; flex-direction: row; align-items: center"
+            >
                 <img
-                  src={personalInfo.image}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    style="width: 20px; height: 20px; margin-right: 8px"
+                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
                 />
-              </div>
-              {/* Decorative element */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 border border-gray-300 -z-10" />
+                <p
+                    style="
+                        color: #000000;
+                        font-family: -apple-system, BlinkMacSystemFont,
+                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
+                            Cantarell, &quot;Open Sans&quot;,
+                            &quot;Helvetica Neue&quot;, sans-serif !important;
+                        font-size: 12px !important;
+                        align-items: center;
+                        margin-bottom: 0;
+                    "
+                >
+                    Made with Emergent
+                </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// About Section
-export const About = () => {
-  return (
-    <section id="about" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="max-w-4xl">
-          <h2 className="text-5xl font-light mb-8">About</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-12">
-            {about.summary}
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            {about.highlights.map((highlight, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <div className="w-1 h-1 bg-black mt-3 flex-shrink-0" />
-                <p className="text-gray-700">{highlight}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Experience Section
-export const Experience = () => {
-  return (
-    <section id="experience" className="py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="text-5xl font-light mb-16">Experience</h2>
-        <div className="space-y-16">
-          {experience.map((exp, index) => (
-            <div key={exp.id} className="relative">
-              {index !== experience.length - 1 && (
-                <div className="absolute left-0 top-24 bottom-0 w-px bg-gray-200 hidden md:block" />
-              )}
-              <div className="grid md:grid-cols-12 gap-8">
-                {/* Timeline dot */}
-                <div className="hidden md:flex md:col-span-1 items-start justify-start pt-2">
-                  <div className="w-3 h-3 bg-black rounded-full" />
-                </div>
-
-                {/* Content */}
-                <div className="md:col-span-11">
-                  <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
-                    <CardContent className="p-8">
-                      <div className="flex items-start justify-between mb-6">
-                        <div>
-                          <h3 className="text-2xl font-light mb-2">{exp.role}</h3>
-                          <div className="flex items-center gap-3">
-                            <p className="text-lg font-normal">{exp.company}</p>
-                          </div>
-                          <p className="text-sm text-gray-500 mt-1">{exp.period}</p>
-                        </div>
-                        {exp.logo && (
-                          <img
-                            src={exp.logo}
-                            alt={`${exp.company} logo`}
-                            className="w-12 h-12 object-contain grayscale opacity-70"
-                            onError={(e) => { e.target.style.display = 'none'; }}
-                          />
-                        )}
-                      </div>
-                      <ul className="space-y-3">
-                        {exp.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex items-start gap-3 text-gray-700">
-                            <span className="text-gray-400 mt-1.5">•</span>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Education */}
-        <div className="mt-16 pt-16 border-t border-gray-200">
-          <h3 className="text-3xl font-light mb-8">Education</h3>
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-8">
-              <h4 className="text-xl font-normal mb-2">{education.degree}</h4>
-              <p className="text-gray-600">{education.institution}</p>
-              <p className="text-sm text-gray-500 mt-1">{education.year}</p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Projects Section
-export const Projects = () => {
-  return (
-    <section id="projects" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="text-5xl font-light mb-16">Featured Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card
-              key={project.id}
-              className="border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
-            >
-              <CardContent className="p-8">
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <Briefcase className="w-8 h-8 text-gray-400 group-hover:text-black transition-colors" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-normal mb-2">{project.title}</h3>
-                    <p className="text-sm text-gray-500 mb-3">{project.client}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-                    <div className="inline-block px-3 py-1 bg-black text-white text-xs">
-                      {project.impact}
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 pt-4">
-                    {project.tags.map((tag, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Skills Section
-export const Skills = () => {
-  return (
-    <section id="skills" className="py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="text-5xl font-light mb-16">Skills & Expertise</h2>
-        
-        {/* Technical Skills */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Code className="w-6 h-6" />
-            <h3 className="text-2xl font-light">Technical Skills</h3>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {skills.technical.map((skill, index) => (
-              <span
-                key={index}
-                className="px-4 py-2 bg-gray-100 hover:bg-black hover:text-white transition-colors text-sm"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Tools */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Briefcase className="w-6 h-6" />
-            <h3 className="text-2xl font-light">Tools</h3>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {skills.tools.map((tool, index) => (
-              <span
-                key={index}
-                className="px-4 py-2 bg-gray-100 hover:bg-black hover:text-white transition-colors text-sm"
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Professional Skills */}
-        <div>
-          <div className="flex items-center gap-3 mb-8">
-            <Users className="w-6 h-6" />
-            <h3 className="text-2xl font-light">Professional Skills</h3>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {skills.soft.map((skill, index) => (
-              <span
-                key={index}
-                className="px-4 py-2 bg-gray-100 hover:bg-black hover:text-white transition-colors text-sm"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-16 pt-16 border-t border-gray-200">
-          <div className="flex items-center gap-3 mb-8">
-            <Award className="w-6 h-6" />
-            <h3 className="text-2xl font-light">Certifications</h3>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {certifications.map((cert, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className="w-1 h-1 bg-black mt-2.5 flex-shrink-0" />
-                <p className="text-sm text-gray-700">{cert}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Contact Section
-export const Contact = () => {
-  return (
-    <section id="contact" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-5xl font-light mb-8">Let's Connect</h2>
-          <p className="text-lg text-gray-600 mb-12">
-            Interested in discussing learning program strategies or potential collaborations? Feel free to reach out.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="flex flex-col items-center gap-4 p-8 bg-white hover:bg-gray-50 transition-colors group"
-            >
-              <Mail className="w-8 h-8 group-hover:scale-110 transition-transform" />
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Email</p>
-                <p className="text-sm font-normal">{personalInfo.email}</p>
-              </div>
-            </a>
-            <a
-              href={`tel:${personalInfo.phone}`}
-              className="flex flex-col items-center gap-4 p-8 bg-white hover:bg-gray-50 transition-colors group"
-            >
-              <Phone className="w-8 h-8 group-hover:scale-110 transition-transform" />
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Phone</p>
-                <p className="text-sm font-normal">{personalInfo.phone}</p>
-              </div>
-            </a>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-4 p-8 bg-white hover:bg-gray-50 transition-colors group"
-            >
-              <Linkedin className="w-8 h-8 group-hover:scale-110 transition-transform" />
-              <div>
-                <p className="text-sm text-gray-500 mb-1">LinkedIn</p>
-                <p className="text-sm font-normal">Connect</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Footer
-export const Footer = () => {
-  return (
-    <footer className="py-12 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-gray-500 hover:text-black transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="text-sm text-gray-500 hover:text-black transition-colors"
-            >
-              Email
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
+        </a>
+        <script>
+            !(function (t, e) {
+                var o, n, p, r;
+                e.__SV ||
+                    ((window.posthog = e),
+                    (e._i = []),
+                    (e.init = function (i, s, a) {
+                        function g(t, e) {
+                            var o = e.split(".");
+                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                                (t[e] = function () {
+                                    t.push(
+                                        [e].concat(
+                                            Array.prototype.slice.call(
+                                                arguments,
+                                                0,
+                                            ),
+                                        ),
+                                    );
+                                });
+                        }
+                        ((p = t.createElement("script")).type =
+                            "text/javascript"),
+                            (p.crossOrigin = "anonymous"),
+                            (p.async = !0),
+                            (p.src =
+                                s.api_host.replace(
+                                    ".i.posthog.com",
+                                    "-assets.i.posthog.com",
+                                ) + "/static/array.js"),
+                            (r =
+                                t.getElementsByTagName(
+                                    "script",
+                                )[0]).parentNode.insertBefore(p, r);
+                        var u = e;
+                        for (
+                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                                u.people = u.people || [],
+                                u.toString = function (t) {
+                                    var e = "posthog";
+                                    return (
+                                        "posthog" !== a && (e += "." + a),
+                                        t || (e += " (stub)"),
+                                        e
+                                    );
+                                },
+                                u.people.toString = function () {
+                                    return u.toString(1) + ".people (stub)";
+                                },
+                                o =
+                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
+                                        " ",
+                                    ),
+                                n = 0;
+                            n < o.length;
+                            n++
+                        )
+                            g(u, o[n]);
+                        e._i.push([i, s, a]);
+                    }),
+                    (e.__SV = 1));
+            })(document, window.posthog || []);
+            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
+                api_host: "https://us.i.posthog.com",
+                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+            });
+        </script>
+    </body>
+</html>
